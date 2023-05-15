@@ -1,14 +1,39 @@
+# Name: NextAuth.js Documentation Crawler
+# Description: This script crawls the NextAuth.js documentation and extracts the content from each page.
+# Author: @culturehives
+# Last Modified: 2023-05-15
+# Python Version: 3.9.6
+# Usage: python nextauth_docs.py
+# Requirements: pip install requests beautifulsoup4 selenium webdriver_manager
+# Notes: This script was intended to be run on a Mac using the Brave Browser.
+#        You will need to install the Brave Browser or Google Chrome and the ChromeDriver for Selenium.
+#        You can download the ChromeDriver from https://chromedriver.chromium.org/downloads.
+#        You will need to change the path to the ChromeDriver in the script on line 178.
+#        You will also need to install the Python packages listed above.
+
+# Import os module to access the file system
 import os
+# Import re module to use regular expressions
 import re
+# Import time module to add delays
 import time
+# Import logging module to log errors
 import logging
+# Import requests module to send HTTP requests
 import requests
+# Import BeautifulSoup class from bs4 module to parse HTML content
 from bs4 import BeautifulSoup
+# Import Selenium WebDriver API module to automate the browser
 from selenium import webdriver
+# Import Service class from selenium.webdriver.chrome.service module to start the ChromeDriver server
 from selenium.webdriver.chrome.service import Service
+# Import Options class from selenium.webdriver.chrome.options module to set options for the browser
 from selenium.webdriver.chrome.options import Options
+# Import ChromeDriverManager class from webdriver_manager.chrome module to download the latest version of the ChromeDriver
 from webdriver_manager.chrome import ChromeDriverManager
+# Import NoSuchElementException class from selenium.common.exceptions module to handle exceptions
 from selenium.common.exceptions import NoSuchElementException
+# Import By class from selenium.webdriver.common.by module to specify the search criteria
 from selenium.webdriver.common.by import By
 
 # Base URL of the webpages we will be crawling
@@ -96,7 +121,7 @@ def get_links(driver):
             # Get the href attribute
             href = link.get_attribute('href')
             # Check if the link is valid
-            if href and not href.startswith('#') and 'carbonads.net' not in href:  # Exclude '#' links
+            if href and not href.startswith('#') and 'carbonads.net' not in href:
                 # Clean the href by removing the anchor
                 clean_href = href.split('#')[0]
                 # Check if the link is not already in the set
@@ -150,7 +175,7 @@ def main():
     chrome_options = Options()
     
     # Define the path to the Brave browser executable
-    chrome_options.binary_location = "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"  # Update this path
+    chrome_options.binary_location = "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 
     # Set up ChromeDriver service
     webdriver_service = Service(ChromeDriverManager().install())
