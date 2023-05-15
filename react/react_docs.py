@@ -1,10 +1,26 @@
+# Name: React Documentation Crawler
+# Description: This script crawls the React documentation and extracts the content from each page.
+# Author: @culturehives
+# Last Modified: 2023-05-15
+# Python Version: 3.9.6
+# Usage: python react_docs.py
+# Requirements: pip install requests beautifulsoup4
+
+# Import os module to access the file system
 import os
+# Import re module to use regular expressions
 import re
+# Import time module to add delays
 import logging
+# Import requests module to send HTTP requests
 import requests
+# Import Function class from functools module to run functions in parallel
 import functools
+# Import concurrent.futures module to run functions in parallel
 import concurrent.futures
+# Import BeautifulSoup class from bs4 module to parse HTML content
 from bs4 import BeautifulSoup
+# Import urljoin function from urllib.parse module to join URLs
 from urllib.parse import urljoin
 
 # Base URL of the webpages we will be crawling
