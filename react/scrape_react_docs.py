@@ -68,6 +68,7 @@ def extract_content(url, session):
         content_element = soup.find('article')
         # Clean the content
         return clean_content(content_element)
+    # Catch all exceptions
     except requests.exceptions.RequestException as e:
         # Log the error
         logging.error(f"Request to {url} failed: {e}")
