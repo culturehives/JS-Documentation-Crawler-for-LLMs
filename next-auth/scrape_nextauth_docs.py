@@ -72,6 +72,7 @@ def extract_content(url, session):
         content_element = soup.find("div", class_="theme-doc-markdown markdown")
         # Clean the content
         return clean_content(content_element)
+    # Catch the exception if the request fails
     except requests.exceptions.RequestException as e:
         # Log the error
         logging.error(f"Request to {url} failed: {e}")
@@ -104,6 +105,7 @@ def get_links(driver):
                     links_set.add(clean_href)
                     # Add the link to the list
                     links_list.append(clean_href)
+        # Catch the exception if the link does not exist
         except NoSuchElementException:
             # If there is no link, then move on
             pass
@@ -128,6 +130,7 @@ def get_links(driver):
             for item in nested_li:
                 # Process the nested li
                 process_menu_item(item)
+        # Catch the exception if the nested ul does not exist        
         except NoSuchElementException:
             # If there is no nested ul, then move on
             pass
