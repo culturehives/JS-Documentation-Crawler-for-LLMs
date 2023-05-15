@@ -141,8 +141,10 @@ def main():
 
     # Iterate over the content list
     for content in content_list:
-        # Log the content
-        logging.info(content)
+        # Check if the content exists
+        if content:
+            # Log the content
+            logging.info(content)
 
     # Calculate the total character count
     total_characters = sum(len(content) for content in content_list if content)
